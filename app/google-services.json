@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "850983248434",
+    "firebase_url": "https://eodigo-d2007.firebaseio.com",
+    "project_id": "eodigo-d2007",
+    "storage_bucket": "eodigo-d2007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850983248434:android:3f54854f5f23af83a0d22b",
+        "android_client_info": {
+          "package_name": "com.hyuncho.ranplgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850983248434-b0tiplkaroqurcuki0dtu9prgk3e2uvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hyuncho.ranplgo",
+            "certificate_hash": "7866c33e5f994cd208a9d720614e41900bda261d"
+          }
+        },
+        {
+          "client_id": "850983248434-ohg1qjnf683vvchvinlq0gqjelsgfl10.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhPLcmY9lRoZVriQCox5ajA_4YUVE9YSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850983248434-ohg1qjnf683vvchvinlq0gqjelsgfl10.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

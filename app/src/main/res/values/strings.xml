@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RANPLGO</string>
+    <string name="congraturation">CONGRATURATIONS!!!</string>
+    <string name="guesser">GUESSER</string>
+    <string name="visitor">VISITOR</string>
+    <string name="tracking">TRACKING</string>
+    <string name="start">START</string>
+    <string name="ranking">RANKING</string>
+</resources>
+
