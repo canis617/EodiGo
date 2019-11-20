@@ -1,6 +1,5 @@
-package com.hyuncho.ranplgo.ui.tracking
+package com.hyuncho.ranplgo.ui.visitor
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -17,10 +16,10 @@ import com.hyuncho.ranplgo.utils.Location
 import kotlinx.android.synthetic.main.activity_visitor.*
 
 
-class TrackingActivity : BaseActivity(),
-    TrackingContract.View, OnMapReadyCallback {
+class VisitorActivity : BaseActivity(),
+    VisitorContract.View, OnMapReadyCallback {
 
-    private lateinit var trackingPresenter: TrackingPresenter
+    private lateinit var visitorPresenter: VisitorPresenter
     private lateinit var currentLocation : Location
 
     private var selectedLocation : LatLng = LatLng(-30.0, 120.0)
@@ -28,10 +27,7 @@ class TrackingActivity : BaseActivity(),
     private var currentMarker : Marker? = null
     private var startMarker : Marker? = null
     private var rangeMarker : Circle? = null
-    private var trackingLine : Polyline? = null
     private lateinit var mMap: GoogleMap
-
-    val polylineOptions = PolylineOptions().width(5f).color(Color.RED)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +40,8 @@ class TrackingActivity : BaseActivity(),
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        trackingPresenter.locationInit(this)
-        trackingPresenter.checkPermission(this)
+        visitorPresenter.locationInit(this)
+        visitorPresenter.checkPermission(this)
 
     }
 
@@ -59,43 +55,33 @@ class TrackingActivity : BaseActivity(),
 
     override fun onDestroy() {
         super.onDestroy()
-        trackingPresenter.detachView()
+        visitorPresenter.detachView()
     }
 
     override fun onResume() {
         super.onResume()
-        trackingPresenter.addLocationListener()
+        visitorPresenter.addLocationListener()
     }
 
     override fun initPresenter() {
-        trackingPresenter = TrackingPresenter()
-        trackingPresenter.attachView(this)
+        visitorPresenter = VisitorPresenter()
+        visitorPresenter.attachView(this)
     }
 
     override fun showError(error: String) {
-        Toast.makeText(this@TrackingActivity, error, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@VisitorActivity, error, Toast.LENGTH_SHORT).show()
     }
 
     fun initBtn() {
         game_create_btn.setOnClickListener {
-            trackingPresenter.gameCreate(max_distance.text.toString(), currentLocation)
+            visitorPresenter.gameCreate(max_distance.text.toString(), currentLocation)
         }
         show_street_view_btn.setOnClickListener {
-            trackingPresenter.showStreetView(this)
+            visitorPresenter.showStreetView(this)
         }
         select_btn.setOnClickListener {
-            trackingPresenter.tracking(this, Integer.parseInt(max_distance.text.toString()), currentLocation)
+            visitorPresenter.visit(this, Integer.parseInt(max_distance.text.toString()))
         }
-    }
-
-    override fun updateTrackingCourse(resultLocationList: ArrayList<LatLng>) {
-        if(trackingLine !=null ){
-            trackingLine?.remove()
-        }
-        for(resultLocation in resultLocationList){
-            polylineOptions.add(resultLocation)
-        }
-        trackingLine = mMap.addPolyline(polylineOptions)
     }
 
     override fun updateMap(startLocation : LatLng, circleMarker: CircleOptions) {
@@ -131,6 +117,8 @@ class TrackingActivity : BaseActivity(),
                     currentMarker?.remove()
                 }
                 currentMarker = mMap.addMarker(MarkerOptions().position(currentLocation.getLatLng()).title("Your Current Location"))
+                visitorPresenter.updateCurrentLocation(currentLocation.getLatLng())
+
             }
         }
     }

@@ -3,6 +3,8 @@
     package="com.hyuncho.ranplgo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +24,16 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.guesser.GuesserActivity"/>
+        <activity android:name=".ui.ranking.RankingActivity"/>
+        <activity android:name=".ui.result.ResultActivity"/>
+        <activity android:name=".ui.tracking.TrackingActivity"/>
+        <activity android:name=".ui.visitor.VisitorActivity"/>
+        <activity android:name=".ui.googlemap.GoogleMapActivity"/>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBcbsAvwa1gNhzBinnmBa-CCQ-QMb-dPRc" />
     </application>
 
 </manifest>

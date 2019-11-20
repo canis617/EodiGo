@@ -7,6 +7,8 @@ package com.hyuncho.ranplgo.service.firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.IgnoreExtraProperties
+import java.time.LocalDate
 
 class FireBaseDB{
     // Write a message to the database
@@ -34,7 +36,6 @@ class FireBaseDB{
             // FirebaseUser.getToken() instead.
             val uid = user.uid
             */
-
         }
     }
 
@@ -50,9 +51,26 @@ class FireBaseDB{
         myRef.setValue("game data!")
     }
 
-    public fun updateResult(){
-        myRef = database.getReference("gamedata/result/"+user?.displayName)
-        myRef.setValue("your score!")
+    fun getHighScore(mode:String) : DatabaseReference{
+        myRef = database.getReference("gamedata/highscore/"+mode+"/"+user?.displayName)
+        return myRef
+    }
+
+    fun getHighscoreDataRef(mode : String) : DatabaseReference{
+        myRef = database.getReference("gamedata/highscore/"+mode)
+        return myRef
+    }
+
+    fun updateResult(mode: String, score :Int){
+        myRef = database.getReference("gamedata/result/"+user?.displayName+"/"+mode)
+
+        @IgnoreExtraProperties
+        data class GameData(
+            var score: Int? = 0,
+            val time : String = ""
+        )
+        val gamedata = GameData(score, LocalDate.now().toString())
+        myRef.setValue(gamedata)
     }
 
 }

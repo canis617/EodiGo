@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">RANPLGO</string>
-    <string name="congraturation">CONGRATURATIONS!!!</string>
+    <string name="congraturation">CONGRATURATIONS!!</string>
     <string name="guesser">GUESSER</string>
     <string name="visitor">VISITOR</string>
     <string name="tracking">TRACKING</string>
     <string name="start">START</string>
     <string name="ranking">RANKING</string>
+    <string name="menu_select_main">Select Menu!</string>
+    <string name="setDistance">Set Distance</string>
+    <string name="meter">M</string>game_create
+    <string name="game_create">Create New Game!</string>
+    <string name="select">SELECT</string>
+    <string name="cancel">CANCEL</string>
+    <string name="show_street">SHOW STREET VIEW</string>
+    <string name="login_text">Login into RanPlGO!</string>
 </resources>
-

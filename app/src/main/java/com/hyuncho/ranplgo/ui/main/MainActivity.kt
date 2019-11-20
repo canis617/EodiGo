@@ -1,31 +1,29 @@
 package com.hyuncho.ranplgo.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.hyuncho.ranplgo.R
-import com.hyuncho.ranplgo.service.firebase.FireBaseDB
-import com.hyuncho.ranplgo.service.firebase.GoogleLogin
 import com.hyuncho.ranplgo.ui.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(),
     MainContract.View {
 
     private lateinit var mainPresenter: MainPresenter
-    private lateinit var firebaseDB : FireBaseDB
-    private lateinit var googleLogin : GoogleLogin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initPresenter()
 
-        googleLogin = GoogleLogin()
-        firebaseDB = FireBaseDB(googleLogin.getUserId())
-
-        firebaseDB.updateResult()
-
         mainPresenter.attachView(this)
+
+        main_start_btn.setOnClickListener {
+            mainPresenter.openMenuSelect(this)
+        }
+        main_rank_btn.setOnClickListener {
+            mainPresenter.gotoRanking(this)
+        }
     }
 
     override fun onDestroy() {

@@ -1,9 +1,28 @@
 package com.hyuncho.ranplgo.data.user
 
-import com.google.firebase.auth.FirebaseUser
 
-class UserScore (user : FirebaseUser, score: Int, mode: String){
-    private var user : FirebaseUser? = user
-    private var score : Int = score
-    private var mode : String = mode
+
+class UserScore constructor(username : String, score: String) : Comparable<UserScore>{
+    private var username  = username
+    private var score : String = score
+
+    fun getUser () : String{
+        return username
+    }
+
+    fun getScore () : String {
+        return score
+    }
+
+    override fun compareTo(other: UserScore): Int {
+        if(Integer.parseInt(this.score) > Integer.parseInt(other.score)){
+            return -1
+        }
+        else if(Integer.parseInt(this.score) == Integer.parseInt(other.score)){
+            return 0
+        }
+        else {
+            return 1
+        }
+    }
 }
